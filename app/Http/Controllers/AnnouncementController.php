@@ -28,7 +28,7 @@ class AnnouncementController extends Controller
         if (!$announcement->is_published) {
             abort(404);
         }
-        
         return view('announcements.show', compact('announcement'));
     }
+
 }

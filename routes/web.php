@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AnnouncementController;
+
 // 首頁路由
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -71,3 +75,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         Route::post('settings/clear-cache', [App\Http\Controllers\Admin\SettingController::class, 'clearCache'])->name('settings.clear-cache');
     });
 });
+
+
+// 搜尋功能
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::post('/search/clear', [SearchController::class, 'clear'])->name('search.clear');
+Route::post('/clear-search-logs', [SearchController::class, 'clearSearchLogs'])->name('clearSearchLogs');
+Route::get('/announcements/{id}', [AnnouncementController::class, 'show'])->name('announcements.show');
+Route::get('/activities/{id}', [ActivityController::class, 'show'])->name('activities.show');

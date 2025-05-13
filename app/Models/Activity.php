@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable; 
+
 
 class Activity extends Model
 {
     use HasFactory;
+    use Searchable;
+
     
     // 在 Activity 模型中確保有以下關聯和可變屬性
     protected $fillable = [
@@ -65,5 +69,14 @@ class Activity extends Model
     {
         $now = now();
         return $now->between($this->registration_start, $this->registration_end);
+    }
+
+    // 搜尋的資料
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+        ];
     }
 }
