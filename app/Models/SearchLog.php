@@ -9,6 +9,15 @@ class SearchLog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['keyword'];
+    protected $fillable = [
+        'keyword',
+        'user_id',
+        'session_id',
+    ];
+    
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }
 

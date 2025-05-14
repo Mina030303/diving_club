@@ -48,8 +48,8 @@
                 </ul>
 
                 <!-- 搜尋欄 -->
-                <form action="{{ route('search') }}" method="GET" class="d-flex justify-content-end" role="search" style="margin-left: 500px;">
-                    <input class="form-control me-2" type="search" name="q" value="{{ request('q') }}" placeholder="搜尋活動或公告" aria-label="搜尋" required style="width: 320px;">
+                <form action="{{ route('search') }}" method="GET" class="d-flex justify-content-end" role="search" style="margin-left: 200px;">
+                    <input class="form-control me-2" type="search" name="q" value="{{ request('q') }}" placeholder="搜尋活動或公告" aria-label="搜尋" required style="width: 320px;"  autocomplete="on">
 
                     @if (Route::is('search'))
                         <select name="sort" class="form-select form-select-sm me-2" style="width: 100px;">

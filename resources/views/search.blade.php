@@ -4,6 +4,7 @@
 @section('content')
 <div class="container">
   <h2>搜尋結果：{{ $query }}</h2>
+  <br><br>
 
   @if($announcements->isEmpty() && $activities->isEmpty())
     <p>沒有找到相關內容。</p>
@@ -37,14 +38,17 @@
 
   <h5 class="mt-5">最近搜尋</h5>
 
-  
-  <ul class="list-group">
-    @foreach($recentKeywords as $keyword)
-      <li class="list-group-item">
-        <a href="{{ route('search', ['q' => $keyword]) }}">{{ $keyword }}</a>
-      </li>
-    @endforeach
-  </ul>
+  @if($recentKeywords->isNotEmpty())
+    <ul class="list-group">
+      @foreach($recentKeywords as $keyword)
+        <li class="list-group-item">
+          <a href="{{ route('search', ['q' => $keyword]) }}">{{ $keyword }}</a>
+        </li>
+      @endforeach
+    </ul>
+  @else
+    <p>（目前沒有搜尋紀錄）</p>
+  @endif
 
   <form action="{{ route('clearSearchLogs') }}" method="POST" style="margin-top: 1rem;">
     @csrf
